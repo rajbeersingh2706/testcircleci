@@ -12,8 +12,9 @@ jobs:
           name: ogs build essentials 1
           command: |
            sudo apt-get -y update
-
-
+           sudo apt-get install -y curl
+           sudo curl --silent --location https://deb.nodesource.com/setup_4.x | bash -
+           sudo apt-get install -y nodejs
  
 workflows:
   version: 2
