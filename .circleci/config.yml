@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Install Node Js
           command: |
-           sudo curl --silent --location https://deb.nodesource.com/setup_8.x | bash -
+           sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
            sudo apt-get install -y nodejs
  
 workflows:
