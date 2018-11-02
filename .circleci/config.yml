@@ -20,7 +20,7 @@ jobs:
       - run:
          name: Install Chrome 
          command: |
-           sudo apt-get install -yes build-essential
+           sudo apt-get install -y build-essential
            sudo curl -sS -o - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
            sudo echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
            #sudo apt-get -y update
