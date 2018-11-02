@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ogs_build_essential:latest
+      - image: ruby
     steps:
       - checkout
       - run: echo "A first hello"
