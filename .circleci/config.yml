@@ -13,7 +13,7 @@ jobs:
       - run: echo "A second hello"
       
  workflows:
- version: 2
- build:
-  - build
+    version: 2
+    build:
+      - build
  
