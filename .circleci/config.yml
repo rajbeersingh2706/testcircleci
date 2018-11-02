@@ -8,6 +8,12 @@ jobs:
     steps:
       #- checkout
       - run:
+         name: login as root
+         command: |
+            sudo su
+            ls -l
+            pwd
+      - run:
           name: Install update and curl 
           command: |
            sudo apt-get -y update
