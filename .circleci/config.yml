@@ -8,7 +8,7 @@ jobs:
     steps:
       #- checkout
       - run:
-          name: ogs build essentials 1
+          name: Install update and curl 
           command: |
            sudo apt-get -y update
            sudo apt-get install -y curl
@@ -17,7 +17,15 @@ jobs:
           command: |
            sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
            sudo apt-get install -y nodejs
- 
+      - run:
+         name: Install Chrome 
+         command: | 
+           sudo apt-get install --yes build-essential
+           sudo curl -sS -o - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+           sudo echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+           sudo apt-get -y update
+           sudo apt-get -y install google-chrome-stable
+        
 workflows:
   version: 2
   build-and-test:
