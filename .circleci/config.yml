@@ -9,14 +9,16 @@ jobs:
       - checkout
       - run: echo "A first hello"
       - run:
-          name: ogs build essentials 
+          name: ogs build essentials 1
           command: |
            sudo apt-get -y update
-           sudo apt-get install -y curl
            sudo apt-get install -y curl
            sudo curl --silent --location https://deb.nodesource.com/setup_4.x | bash -
            sudo apt-get install -y nodejs
            sudo apt-get install -y build-essential
+      - run:
+         name: ogs build essentails 2
+         command: |
            sudo curl -sS -o - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
            sudo echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
            sudo apt-get -y update
