@@ -11,7 +11,7 @@ jobs:
           command: |
            apt-get -y update
       - run: echo "A second hello"
- workflows:
-    version: 2
-    build:
-      - build
+workflows:
+  version: 2
+  build:
+   - build
