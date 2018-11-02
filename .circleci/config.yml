@@ -9,7 +9,7 @@ jobs:
       - run:
           name: ogs build essentials 
           command: |
-           apt-get -y update
+           sudo apt-get -y update
       - run: echo "A second hello"
 workflows:
   version: 2
