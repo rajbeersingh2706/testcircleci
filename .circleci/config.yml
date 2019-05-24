@@ -30,13 +30,12 @@ jobs:
          key: v1-dependencies-{{ checksum "pom.xml" }}
 
      - run: mvn -Dmaven.test.skip=true package
-     - run: ls -la
      - run:
          name: Run the deploy.sh to remote Machine
          command: |
            ./push_to_ecr.sh
            scp -v  -o  StrictHostKeyChecking=no deploy.sh ubuntu@34.244.205.53:/home/ubuntu/u01/labor/app/deploy.sh
-           ssh  -o  StrictHostKeyChecking=no ubuntu@34.244.205.53"/home/ubuntu/u01/labor/app/deploy.sh"
+           ssh  -o  StrictHostKeyChecking=no ubuntu@34.244.205.53:/home/ubuntu/u01/labor/app/deploy.sh
 
 workflows:
   version: 2
