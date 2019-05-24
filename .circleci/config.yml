@@ -34,7 +34,6 @@ jobs:
      - run:
          name: Run the deploy.sh to remote Machine
          command: |
-          ls -la
           ./deploy.sh
           #  scp -v  -o  StrictHostKeyChecking=no deploy.sh ubuntu@34.247.90.227:/home/ubuntu/u01/labor/app/deploy.sh
           #  scp -v  -o  StrictHostKeyChecking=no Dockerfile ubuntu@34.247.90.227:/home/ubuntu/u01/labor/app/Dockerfile
