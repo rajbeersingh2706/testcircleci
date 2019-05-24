@@ -1,36 +1,53 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/labor-service
     docker:
-      - image: circleci/ruby:2.3.6
-        environment:
-         ENV PHANTOM_JS=phantomjs-2.1.1-linux-x86_64
+     - image: circleci/openjdk:8-jdk
     steps:
-      #- checkout
-      - run:
-          name: Install update and curl 
-          command: |
-           sudo apt-get -y update
-           sudo apt-get install -y curl
-      - run:
-          name: Install Node Js
-          command: |
-           sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
-           sudo apt-get install -y nodejs
-      - run:
-         name: Install Build Essential 
+     - checkout
+     - run: 
+         name: Build Process
+         command: ls -la
+  deploy:
+    working_directory: ~/labor-service
+    docker:
+     - image: circleci/openjdk:8-jdk
+    steps:
+     - checkout
+     # Download and cache dependencies
+     - restore_cache:
+         keys: 
+          - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+     - run: mvn dependency:go-offline
+     - save_cache:
+         paths:
+          - ~/.m2
+         key: v1-dependencies-{{ checksum "pom.xml" }}
+
+     - run: mvn -Dmaven.test.skip=true package
+     - run: ls -la
+     - run:
+         name: Run the deploy.sh to remote Machine
          command: |
-           sudo apt-get install -y build-essential
-      - run:
-         name: Install Chrome
-         command: |
-           #sudo curl -sS -o - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-           sudo echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
-           sudo apt-get -y update
-           sudo apt-get -y install google-chrome-stable
-        
+          ls -la
+          ./deploy.sh
+          #  scp -v  -o  StrictHostKeyChecking=no deploy.sh ubuntu@34.247.90.227:/home/ubuntu/u01/labor/app/deploy.sh
+          #  scp -v  -o  StrictHostKeyChecking=no Dockerfile ubuntu@34.247.90.227:/home/ubuntu/u01/labor/app/Dockerfile
+          #  scp -v -o StrictHostKeyChecking=no target/salido-labor-1.0.0.jar ubuntu@34.247.90.227:/home/ubuntu/u01/labor/app/salido-labor.jar
+          #  ssh  -o  StrictHostKeyChecking=no ubuntu@34.247.90.227 "/home/ubuntu/u01/labor/app/deploy.sh"
+
 workflows:
   version: 2
-  build-and-test:
+  build-deploy:
     jobs:
-     - build
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
