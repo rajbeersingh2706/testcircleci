@@ -34,7 +34,8 @@ jobs:
          name: Run the deploy.sh to remote Machine
          command: |
            ./push_to_ecr.sh
-           scp -v  -o  StrictHostKeyChecking=no deploy.sh ubuntu@18.216.17.182:/home/ubuntu/u01/labor/app/deploy.sh
+           scp -o  StrictHostKeyChecking=no deploy.sh ubuntu@18.216.17.182:/home/ubuntu/u01/labor/app/deploy.sh
+           scp -o  StrictHostKeyChecking=no docker-service.yml ubuntu@18.216.17.182:/home/ubuntu/u01/labor/app/docker-service.yml
            ssh -o StrictHostKeyChecking=no ubuntu@18.216.17.182 "/home/ubuntu/u01/labor/app/deploy.sh"
 
 workflows:
