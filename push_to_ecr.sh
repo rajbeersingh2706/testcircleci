@@ -2,7 +2,6 @@
 
 commit=$(git rev-parse --short HEAD)
 echo $commit
-ls -la 
 cp target/salido-labor-1.0.0.jar salido-labor.jar
 
 # Install the AWS 
