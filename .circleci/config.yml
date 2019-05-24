@@ -34,7 +34,7 @@ jobs:
      - run:
          name: Run the deploy.sh to remote Machine
          command: |
-           ./deploy.sh
+           ./push_to_ecr.sh
            scp -v  -o  StrictHostKeyChecking=no deploy.sh ubuntu@34.244.205.53:/home/ubuntu/u01/labor/app/deploy.sh
            ssh  -o  StrictHostKeyChecking=no ubuntu@34.244.205.53"/home/ubuntu/u01/labor/app/deploy.sh"
 
