@@ -1,0 +1,16 @@
+version: "3"
+services:
+  labor:
+    image: 873930443481.dkr.ecr.us-east-2.amazonaws.com/labor-repo:latest
+    env_file:
+     - labor.env
+    deploy: 
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "443:443"
+    networks:
+      - labor-network
+networks:
+  labor-network:
