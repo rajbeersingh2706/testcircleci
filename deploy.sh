@@ -1,6 +1,7 @@
 #!/bin/bash
 
-echo $1
+commit=$1
+echo "Here>> in Circle CI",$commit
 
 #sudo docker stop $(sudo docker ps -aq)
 #sudo docker rm $(sudo docker ps -aq)
