@@ -16,4 +16,7 @@ else
  sudo docker service update --image 873930443481.dkr.ecr.us-east-2.amazonaws.com/labor-repo:$commit labor_service_labor
 fi
 
+## cmmit testing1
+
+
 
