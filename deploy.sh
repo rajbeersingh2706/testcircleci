@@ -2,7 +2,7 @@
 
 commit=$1
 cd /home/ubuntu/labor
-$(aws ecr get-login --no-include-email --region us-east-2)
+sudo $(aws ecr get-login --no-include-email --region us-east-2)
 
 if [ ! "$(sudo docker service ls | grep labor_service)" ]
 then
