@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo $1
+
 #sudo docker stop $(sudo docker ps -aq)
 #sudo docker rm $(sudo docker ps -aq)
 #docker kill $(docker ps -aq)
