@@ -11,6 +11,8 @@ echo "Here>> in Circle CI",$commit
 #sudo docker pull 873930443481.dkr.ecr.us-east-2.amazonaws.com/labor-repo:latest 
 #sudo docker run -it -d -p 443:443 873930443481.dkr.ecr.us-east-2.amazonaws.com/labor-repo:$commit
 cd /home/ubuntu/labor
-#sudo docker rmi $(sudo docker image ls -aq)
+
 #sudo docker stack deploy -c docker-service.yml labor_service
+sudo docker pull 873930443481.dkr.ecr.us-east-2.amazonaws.com/labor-repo:$commit
 sudo docker service update --image 873930443481.dkr.ecr.us-east-2.amazonaws.com/labor-repo:$commit labor_service_labor
+sudo docker rmi $(sudo docker image ls -aq)
