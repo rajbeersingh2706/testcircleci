@@ -2,7 +2,7 @@
 
 commit=$1
 cd /home/ubuntu/labor
-sudo docker rmi $(sudo docker image ls -aq)
+sudo docker rmi -f $(sudo docker image ls -aq)
 sudo $(aws ecr get-login --no-include-email --region us-east-2)
 
 if [ ! "$(sudo docker service ls | grep labor_service)" ]
